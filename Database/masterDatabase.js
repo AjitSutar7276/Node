@@ -8,6 +8,31 @@ exports.getLoginData = async(data)=>{
     return result;
 }
 
+exports.getUnitMaster = async()=>{
+    const query = `SELECT * FROM unit_master`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.deleteUnit = async(id) =>{
+    const query = `delete from unit_master where id=${id}`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.updateUnit = async(id)=>{
+    const query =`select * from unit_master where id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.updateData = async(data)=>{
+    const query = `update unit_master set unit='${data.unit}'where id='${data.ID}'`;
+    console.log(query);
+    const result = getPromise(query);
+    return result;
+}
+
 function getPromise(query) {
 
     const dbConnection = mysql.createConnection(config);
