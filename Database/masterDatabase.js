@@ -133,10 +133,37 @@ exports.updateJobProcess = async(data)=>{
 }
 
 
+//////////////////////////////////////Surface_Treatement_Master///////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+exports.getSurfaceData = async()=>{
+    const query = `select * from surface_tre_master`;
+    const result = getPromise(query);
+    return result;
+}
 
+exports.submitData = async(data)=>{
+    const query = `insert into surface_tre_master(surface_treatment,unit_in,purchase_rate,sale_rate)values('${data.surfaceName}','${data.unit}','${data.pur_rate}','${data.sale_rate}')`;
+    const result = getPromise(query);
+    return result;
+}
 
+exports.deleteSurface = async(id) =>{
+    const query =`delete from surface_tre_master where id = '${id}'`;
+    const result = getPromise(query);
+    return result;
+}
 
+exports.editSurface= async(id) =>{
+    const query = `select * from surface_tre_master where id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
 
+exports.updateSurface = async(data) =>{
+    const query = `update surface_tre_master set surface_treatment='${data.surfaceName}',unit_in='${data.unit}',purchase_rate='${data.pur_rate}',sale_rate='${data.sale_rate}' where id='${data.id}'`;
+    const result = getPromise(query);
+    return result;
+}
 function getPromise(query) {
 
     const dbConnection = mysql.createConnection(config);

@@ -141,6 +141,44 @@ class masterController {
         const details = await masterDatabase.updateJobProcess(data);
         res.send(details);
     }
+
+    //////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////Surface_Treatment_Master/////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////
+
+    async getSurfaceData(req,res)
+    {
+        const data = await masterDatabase.getSurfaceData();
+        res.send(data);
+    }
+
+    async submitSurfaceDATA(req,res)
+    {
+        const data = req.body;
+        const da = await masterDatabase.submitData(data);
+        res.send(da);
+    }
+
+    async deleteSurface(req,res)
+    {
+        const id = req.params.id;
+        const data = await masterDatabase.deleteSurface(id);
+        res.send(data);
+    }
+
+    async editSurface(req,res)
+    {
+        const id = req.params.id;
+        const data = await masterDatabase.editSurface(id);
+        res.send(data);
+    }
+
+    async UpdateSurface(req,res)
+    {
+        const data = req.body;
+        const result = await masterDatabase.updateSurface(data);
+        res.send(result);
+    }
 }
 
 module.exports = masterController

@@ -33,4 +33,11 @@ router.get('/deleteJobProcess/:id',masterControllerObj.deleteJobProcess);
 router.get('/editJobProcess/:id',masterControllerObj.editJobProcess);
 router.post('/updateJobProcess',masterControllerObj.updateJobProcess);
 
+
+////////////////////**Surface_Treatement_master **//////////////
+router.get('/getSurfaceData',masterControllerObj.getSurfaceData);
+router.post('/SubmitData',masterControllerObj.submitSurfaceDATA);
+router.get('/deleteSurface/:id',masterControllerObj.deleteSurface);
+router.get('/editSurface/:id',masterControllerObj.editSurface);
+router.post('/UpdateSurface',masterControllerObj.UpdateSurface);
 module.exports = router;
