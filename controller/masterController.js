@@ -179,6 +179,47 @@ class masterController {
         const result = await masterDatabase.updateSurface(data);
         res.send(result);
     }
+
+    ///////////////////////////////Machine_Master///////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+
+    async getMachineData(req,res)
+    {
+        const result = await masterDatabase.getMachineData();
+        res.send(result);
+    }
+
+    async submitMasterData(req,res)
+    {
+        const result = await masterDatabase.submitMasterData(req.body);
+        res.send(result);
+    }
+
+    async deleteMachine(req,res)
+    {
+        const result = await masterDatabase.deleteMachineData(req.params.id);
+        res.send(result);
+    }
+    async editMachine(req,res)
+    {
+        const result = await masterDatabase.editMachineData(req.params.id);
+        res.send(result);
+    }
+    async updateMachineData(req,res)
+    {
+        const result = await masterDatabase.updateMachineData(req.body);
+        res.send(result);
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////Raw-Material-Master///////////////////////////////////////
+
+    async getRawMaterailData(req,res)
+    {
+        const result = await masterDatabase.getRawMaterailData();
+        res.send(result);
+    }
 }
 
 module.exports = masterController

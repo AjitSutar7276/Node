@@ -39,5 +39,18 @@ router.get('/getSurfaceData',masterControllerObj.getSurfaceData);
 router.post('/SubmitData',masterControllerObj.submitSurfaceDATA);
 router.get('/deleteSurface/:id',masterControllerObj.deleteSurface);
 router.get('/editSurface/:id',masterControllerObj.editSurface);
-router.post('/UpdateSurface',masterControllerObj.UpdateSurface);
+router.post('/UpdateSurface',masterControllerObj.UpdateSurface); 
+
+////////////////////**Machine_Master**//////////////////////////
+
+router.get('/getMachineData',masterControllerObj.getMachineData);
+router.post('/SubmitMachineData',masterControllerObj.submitMasterData);
+router.get('/deleteMachine/:id',masterControllerObj.deleteMachine);
+router.get('/editMachineData/:id',masterControllerObj.editMachine);
+router.post('/updateMachine',masterControllerObj.updateMachineData);
+
+///////////////////////**Raw-Material-Master **/////////////////////
+
+router.get('getRawMaterialData',masterControllerObj.getRawMaterailData);
+
 module.exports = router;

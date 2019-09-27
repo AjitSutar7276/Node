@@ -164,6 +164,54 @@ exports.updateSurface = async(data) =>{
     const result = getPromise(query);
     return result;
 }
+
+
+///////////////////////////////////////////////Below_Code_Machine_Master_Database/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+exports.getMachineData = async() =>{
+    const query = `select * from machine_master`;
+    const result  = getPromise(query);
+    return result;
+}
+
+exports.submitMasterData = async(data) =>{
+    const query =`insert into machine_master(machine_name,description,make,capacity,process,purchase_date,warranty)
+    values('${data.Machine_name}','${data.Description}','${data.Make}','${data.capacity}','${data.process}','${data.pur_date}','${data.Warranty}')`;
+    const result  = getPromise(query);
+    return result;
+}
+
+exports.deleteMachineData = async(id) =>{
+    const query = `delete from machine_master where machine_id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.editMachineData = async(id) =>{
+    const query = `select * from machine_master where machine_id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.updateMachineData = async(data) =>{
+    const query = `update machine_master set machine_name='${data.Machine_name}',description='${data.Description}',make='${data.Make}',capacity='${data.capacity}',process='${data.process}',purchase_date='${data.pur_date}',warranty='${data.Warranty}' where machine_id='${data.id}'`;
+    console.log(query);
+    const result = getPromise(query);
+    return result;
+}
+
+
+//////////////////////////////////////////Raw-Material_master_database/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+exports.getRawMaterailData = async() =>{
+    const query = `select * from raw_material_master`;
+    const result = getPromise(query);
+    return result;
+}
+
 function getPromise(query) {
 
     const dbConnection = mysql.createConnection(config);
