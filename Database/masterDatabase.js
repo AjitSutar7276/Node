@@ -74,9 +74,10 @@ exports.getJobMasterData = async()=>{
     return result;
 }
 
-exports.submitData = async(data)=>{
+exports.submitJOBData = async(data)=>{
     const query = `insert into job_master(art_no,job_name,hsn,description,open_stock,min_stock,max_stock,rate,cgst,sgst,igst)
                     values('${data.ArtNo}','${data.JobName}','${data.HSN}','${data.description}','${data.openStock}','${data.MinStock}','${data.MaxStock}','${data.Rate}','${data.cgst}','${data.sgst}','${data.igst}')`;
+    console.log(query);
     const result = getPromise(query);
     return result;
 }
@@ -176,8 +177,8 @@ exports.getMachineData = async() =>{
 }
 
 exports.submitMasterData = async(data) =>{
-    const query =`insert into machine_master(machine_name,description,make,capacity,process,purchase_date,warranty)
-    values('${data.Machine_name}','${data.Description}','${data.Make}','${data.capacity}','${data.process}','${data.pur_date}','${data.Warranty}')`;
+    const query =`insert into machine_master(machine_name,description,make,capacity,process,purchase_date,warranty,img_path)
+    values('${data.Machine_name}','${data.Description}','${data.Make}','${data.capacity}','${data.process}','${data.pur_date}','${data.Warranty}','upload/${data.imagePath}')`;
     const result  = getPromise(query);
     return result;
 }
@@ -212,7 +213,14 @@ exports.getRawMaterailData = async() =>{
     return result;
 }
 
-function getPromise(query) {
+exports.submitRawMaterialData = async(data) =>{
+    const query = `insert into raw_material_master(itme_name,item_type,unit,hsn,used_in,category,weight,feet,pur_rate,sale_rate,op_stock,thinkness,minLevel,maxLevel,cgst,sgst,igst)values('${data.itemName}','${data.itmeType}','${data.unit}','${data.HSN}','${data.Used_in}','${data.category}','${data.weight}','${data.feet}','${data.pur_rate}','${data.sale_rate}','${data.op_stock}','${data.thinkness}','${data.minLevel}','${data.maxLevel}','${data.cgst}','${data.sgst}','${data.igst}')`;
+    const result = getPromise(query);
+    return result;
+}
+
+function getPromise(query) 
+{
 
     const dbConnection = mysql.createConnection(config);
 

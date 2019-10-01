@@ -4,6 +4,7 @@ const fs = require('fs');
 const multer = require('multer');
 const path = require('path');
 const masterrouter = require('./router/masterrouter');
+const salesrouter  = require('./router/salesrouter');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -44,6 +45,7 @@ app.use(function(req, res, next) {
         }
   });
 app.use('',masterrouter);
+app.use('',salesrouter);
 app.get('/',function(req,res){
     res.end('file catcher examaple');
 })

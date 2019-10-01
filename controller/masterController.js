@@ -82,10 +82,10 @@ class masterController {
         const getJobMaster = await masterDatabase.getJobMasterData();
         res.send(getJobMaster);
     }
-    async submitMasterData(req,res)
+    async submitJobMasterData(req,res)
     {
         const data = req.body;
-        const submitData = await masterDatabase.submitData(data);
+        const submitData = await masterDatabase.submitJOBData(data);
         res.send(submitData);
     }
     async deleteJob(req,res)
@@ -218,6 +218,13 @@ class masterController {
     async getRawMaterailData(req,res)
     {
         const result = await masterDatabase.getRawMaterailData();
+        res.send(result);
+    }
+
+    async submitRawMaterialData(req,res)
+    {
+        const data = req.body;
+        const result = await masterDatabase.submitRawMaterialData(data);
         res.send(result);
     }
 }

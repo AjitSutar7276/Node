@@ -21,7 +21,7 @@ router.post('/updateShadeData',masterControllerObj.updateShadeData);
 
 /////////////////////**Job-Master**/////////////////////////
 router.get('/getJobMaster',masterControllerObj.getJobMasterData);
-router.post('/SubmitJob',masterControllerObj.submitMasterData);
+router.post('/SubmitJob',masterControllerObj.submitJobMasterData);
 router.get('/deleteJob/:id',masterControllerObj.deleteJob);
 router.get('/updateDatas/:id',masterControllerObj.updateDatas);
 router.post('/updateJobDatas',masterControllerObj.updateJobData);
@@ -51,6 +51,6 @@ router.post('/updateMachine',masterControllerObj.updateMachineData);
 
 ///////////////////////**Raw-Material-Master **/////////////////////
 
-router.get('getRawMaterialData',masterControllerObj.getRawMaterailData);
-
+router.get('/getRawMaterialData',masterControllerObj.getRawMaterailData);
+router.post('/submitRawData',masterControllerObj.submitRawMaterialData);
 module.exports = router;
