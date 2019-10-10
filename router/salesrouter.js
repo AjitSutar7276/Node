@@ -18,5 +18,9 @@ router.post('/submitQutationData',salesControllerObj.submitQutationData);
 
 ////////////////////////////////Order-Book-Master//////////////////////////////////////
 
-router.get('/getPOdetails',salesControllerObj.getPoIdDetails)
+router.get('/getPOdetails',salesControllerObj.getPoIdDetails);
+router.get('/getQuoDataForPO/:id',salesControllerObj.getQuoDataForPO);
+router.get('/getPOQuoData/:id',salesControllerObj.getPOQuoData);
+router.get('/getJobDataForPoData/:id',salesControllerObj.getJobDataForPoData);
+router.post('/submitDataOrder',salesControllerObj.submitDataOrder);
 module.exports = router;

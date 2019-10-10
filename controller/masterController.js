@@ -227,6 +227,12 @@ class masterController {
         const result = await masterDatabase.submitRawMaterialData(data);
         res.send(result);
     }
+
+    async getCotegoryData(req,res)
+    {
+        const result = await masterDatabase.getCotegoryData();
+        res.send(result);
+    }
 }
 
 module.exports = masterController

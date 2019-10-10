@@ -57,6 +57,31 @@ class salesController {
         let result = await salesDatabase.getPoIdDetails();
         res.send(result);
     }
+
+    async getQuoDataForPO(req,res)
+    {
+        let result = await salesDatabase.getQuoDataForPO(req.params.id);
+        res.send(result);
+    }
+
+    async getPOQuoData(req,res)
+    {
+        let result = await salesDatabase.getPOQuoData(req.params.id);
+        res.send(result);
+    }
+
+    async getJobDataForPoData(req,res)
+    {
+        let result = await salesDatabase.getJobDataForPoData(req.params.id);
+        res.send(result);
+    }
+
+    async submitDataOrder(req,res)
+    {
+        let data = req.body;
+        let result = await salesDatabase.submitDataOrder(data);
+        res.send(result);
+    }
 }
 
 module.exports = salesController;

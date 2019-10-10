@@ -47,7 +47,8 @@ app.use(function(req, res, next) {
 app.use('',masterrouter);
 app.use('',salesrouter);
 app.get('/',function(req,res){
-    res.end('file catcher examaple');
+    // res.end('file catcher examaple');
+    res.sendFile(__dirname + '/index.html');
 })
 app.listen(3000,()=>{
     console.log('Server is running on port no. 3000');

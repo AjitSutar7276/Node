@@ -53,4 +53,5 @@ router.post('/updateMachine',masterControllerObj.updateMachineData);
 
 router.get('/getRawMaterialData',masterControllerObj.getRawMaterailData);
 router.post('/submitRawData',masterControllerObj.submitRawMaterialData);
+router.get('/getCotegoryData',masterControllerObj.getCotegoryData);
 module.exports = router;

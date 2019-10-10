@@ -59,8 +59,8 @@ exports.submitQutationData = async(data) =>{
     quatationId = result.insertId;
     console.log(quatationId);
     Object.keys(data.quoDetails).forEach(ele=>{
-        const query1 = `insert into qutation_details(qutation_id,particular,qty,unit,rate)
-                       values('${quatationId}','${data.quoDetails[ele].perticulars}','${data.quoDetails[ele].quantity}','${data.quoDetails[ele].unit.id}','${data.quoDetails[ele].rate}')`;
+        const query1 = `insert into qutation_details(qutation_id,materialcode,particular,qty,unit,rate)
+                       values('${quatationId}','${data.quoDetails[ele].materialcode.id}','${data.quoDetails[ele].perticulars}','${data.quoDetails[ele].quantity}','${data.quoDetails[ele].unit.id}','${data.quoDetails[ele].rate}')`;
         const result1 =  getPromise(query1)
         return result1;
         // console.log(data.quoDetails[ele].materialcode.material_id);
@@ -75,6 +75,45 @@ exports.getPoIdDetails = async() =>{
     const result = getPromise(query);
     return result;
 }
+
+exports.getQuoDataForPO = async(id) =>{
+    const query = `select * from qutation_id_master where Party_id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.getPOQuoData = async(id) =>{
+    const query = `SELECT *,j.id as jid,qd.rate as qrate  FROM qutation_details as qd left join job_master as j on qd.materialcode = j.id where qd.qutation_id = '${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.getJobDataForPoData = async(id) =>{
+    const query = `select * from job_master where id = '${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.submitDataOrder = async(data)=>{
+
+    // const po_no = 0;
+    const query = `insert into po_id_master(po_date,party_id,qutation_id,prority,delivery_date)values('${data.date}','${data.name.party_id}','${data.quotationNo.qutation_id}','${data.priority}','${data.Deliverydate}')`;
+    console.log(query);
+    const result = await getPromise(query);
+    var po_no = result.insertId;
+    Object.keys(data.PoDataList).forEach(ele=>{
+        const query1 = `insert into po_details (po_no,job_no,sizeandDescription,qty,rate,surfaceTreatement,exciseRate,vatRate)values('${po_no}','${data.PoDataList[ele].jid}','${data.PoDataList[ele].size}','${data.PoDataList[ele].qty}','${data.PoDataList[ele].rate}','${data.PoDataList[ele].surface.id}','${data.ExciseRate}','${data.vatRate}')`;
+        console.log(ele);
+        console.log(query1);
+        const result1 = getPromise(query1)
+        return result1;
+        
+    });
+}
+
+
+
+
 
 
 function getPromise(query) 
