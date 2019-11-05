@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const masterrouter = require('./router/masterrouter');
 const salesrouter  = require('./router/salesrouter');
+const productionrouter = require('./router/productionrouter');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -46,9 +47,16 @@ app.use(function(req, res, next) {
   });
 app.use('',masterrouter);
 app.use('',salesrouter);
+app.use('',productionrouter);
 app.get('/',function(req,res){
     // res.end('file catcher examaple');
     res.sendFile(__dirname + '/index.html');
+});
+app.get('/report',function(req,res){
+  res.sendFile(__dirname + '/report.html');
+});
+app.get('/download',function(req,res){
+  res.sendFile(__dirname + '/download.html');
 })
 app.listen(3000,()=>{
     console.log('Server is running on port no. 3000');

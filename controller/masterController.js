@@ -233,6 +233,12 @@ class masterController {
         const result = await masterDatabase.getCotegoryData();
         res.send(result);
     }
+
+    async deleteRawData(req,res)
+    {
+        const result = await masterDatabase.deleteRawData(req.params.id);
+        res.send(result);
+    }
 }
 
 module.exports = masterController

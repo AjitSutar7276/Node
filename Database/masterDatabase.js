@@ -214,13 +214,19 @@ exports.getRawMaterailData = async() =>{
 }
 
 exports.submitRawMaterialData = async(data) =>{
-    const query = `insert into raw_material_master(itme_name,item_type,unit,hsn,used_in,category,weight,feet,pur_rate,sale_rate,op_stock,thinkness,minLevel,maxLevel,cgst,sgst,igst)values('${data.itemName}','${data.itmeType.id}','${data.unit}','${data.HSN}','${data.Used_in}','${data.category.id}','${data.weight}','${data.feet}','${data.pur_rate}','${data.sale_rate}','${data.op_stock}','${data.thinkness}','${data.minLevel}','${data.maxLevel}','${data.cgst}','${data.sgst}','${data.igst}')`;
+    const query = `insert into raw_material_master(itme_name,item_type,unit,hsn,used_in,category,weight,feet,pur_rate,sale_rate,op_stock,thinkness,minLevel,maxLevel,cgst,sgst,igst,imgPath)values('${data.itemName}','${data.itmeType.id}','${data.unit}','${data.HSN}','${data.Used_in}','${data.category.id}','${data.weight}','${data.feet}','${data.pur_rate}','${data.sale_rate}','${data.op_stock}','${data.thinkness}','${data.minLevel}','${data.maxLevel}','${data.cgst}','${data.sgst}','${data.igst}','${data.imagePath}')`;
     const result = getPromise(query);
     return result;
 }
 
 exports.getCotegoryData = async() =>{
     const query = `select * from category_master`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.deleteRawData = async(id) =>{
+    const query = `delete from raw_material_master where material_id='${id}'`;
     const result = getPromise(query);
     return result;
 }
