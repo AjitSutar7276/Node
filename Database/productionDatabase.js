@@ -14,6 +14,30 @@ exports.getJobWorkDetails = async(id)=>{
     return result;
 }
 
+exports.SubmitJodWorddata = async(data)=>{
+    let companyID = data.comName.party_id;
+    let POID      = data.PONo.po_id;
+    let jobID     = data.jobID;
+    let productionCost = data.productionCost;
+    let surfaceCost    = data.sufaceCost;
+    let fittingCost    = data.fittingCost;
+    let packingCost    = data.packingCost;
+    
+    Object.keys(data.jobworklist).forEach(ele=>{
+        const query1 = `insert into job_work_details(company_id,po_id,jobwork_id,material_id,qty,surface_id,productionCost,surfaceCost,fittingCost,packingCost)
+                       values('${companyID}','${POID}','${jobID}','${data.jobworklist[ele].jodid}','${data.jobworklist[ele].QTY}','${data.jobworklist[ele].surfaceid}','${productionCost}','${surfaceCost}','${fittingCost}','${packingCost}')`;   
+        const result1 =  getPromise(query1)
+        return result1;
+        // console.log(data.quoDetails[ele].materialcode.material_id);
+    })
+    Object.keys(data.processData).forEach(ele=>{
+        const query2 = `insert into job_process_details(company_id,po_id,job_id,process_id,time)values('${companyID}','${POID}','${jobID}','${data.processData[ele].processID}','${data.processData[ele].processTime}')`;
+        const result2 = getPromise(query2);
+        // return result2
+    })
+
+ 
+}
 
 
 

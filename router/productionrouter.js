@@ -5,5 +5,6 @@ const productionControllerObj = new productionController();
 
 router.get('/getPODetailsCompany/:id',productionControllerObj.getPoDetails);
 router.get('/getJobWorkDetails/:id',productionControllerObj.getJobWorkDetails);
+router.post('/SubmitJodWorddata',productionControllerObj.SubmitJodWorddata);
 
 module.exports = router;

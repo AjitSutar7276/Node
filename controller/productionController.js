@@ -17,6 +17,13 @@ class productionController {
       let result = await productionDatabase.getJobWorkDetails(id);
       res.send(result);
   }
+
+  async SubmitJodWorddata(req,res)
+  {
+    let data = req.body;
+    let result = await productionDatabase.SubmitJodWorddata(data);
+    res.send(result);
+  }
 }
 
 module.exports = productionController;
