@@ -75,17 +75,22 @@ exports.getJobMasterData = async()=>{
 }
 
 exports.submitJOBData = async(data)=>{
+    console.log(data);
     const query = `insert into job_master(art_no,job_name,hsn,description,open_stock,min_stock,max_stock,rate,cgst,sgst,igst)
                     values('${data.ArtNo}','${data.JobName}','${data.HSN}','${data.description}','${data.openStock}','${data.MinStock}','${data.MaxStock}','${data.Rate}','${data.cgst}','${data.sgst}','${data.igst}')`;
                 
-    console.log(query);
+    // console.log(query);
     const result = getPromise(query);
     let jobID = result.insertId;
-
-    if(data.Checked == true)
-    {
-        const query =`insert into raw_material_master(itme_name,item_type,unit,hsn,used_in,category,weight,feet,pur_rate,sale_rate,op_stock,thinkness,minLevel,maxLevel,cgst,sgst,igst,imgPath)values('${data.itemName}','${data.itmeType.id}','${data.unit}','${data.HSN}','${data.Used_in}','${data.category.id}','${data.weight}','${data.feet}','${data.pur_rate}','${data.sale_rate}','${data.thinkness}')`;
-    }
+    Object.keys(data.RawDetails).forEach(ele=>{
+        const query = `insert into raw_material_master(itme_name,job_id,item_type,unit,hsn,weight,feet,pur_rate,sale_rate,thinkness)values('${data.RawDetails[ele].itmeName1}','${jobID}','0','${data.RawDetails[ele].unit1}','${data.RawDetails[ele].HSN1}','${data.RawDetails[ele].weight1}','${data.RawDetails[ele].sqFeet1}','${data.RawDetails[ele].PurRate1}','${data.RawDetails[ele].SalesRate1}','${data.RawDetails[ele].Thickness1}')`;
+        const result1 = getPromise(query);
+        console.log(query)
+    });
+    // if(data.Checked == true)
+    // {
+    //     const query =`insert into raw_material_master(itme_name,item_type,unit,hsn,used_in,category,weight,feet,pur_rate,sale_rate,op_stock,thinkness,minLevel,maxLevel,cgst,sgst,igst,imgPath)values('${data.itemName}','${data.itmeType.id}','${data.unit}','${data.HSN}','${data.Used_in}','${data.category.id}','${data.weight}','${data.feet}','${data.pur_rate}','${data.sale_rate}','${data.thinkness}')`;
+    // }
     return result;
 }
 
@@ -237,6 +242,81 @@ exports.deleteRawData = async(id) =>{
     const result = getPromise(query);
     return result;
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////Employee-Master-Code////////////////////////////////////////
+
+exports.insertEmployee = async(data) =>{
+    const query = `insert into employee_master(emp_code,emp_name,designation,mobile_no,address,join_date,salary)values('${data.eCode}','${data.eName}','${data.desig}','${data.mNo}','${data.address}','${data.joinDate}','${data.eSal}')`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.getEmployeeData = async() =>{
+    const query =`select * from employee_master`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.deleteEmployee = async(id) =>{
+    const query = `delete from employee_master where id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.getEmployeeDataEdit = async(id) =>{
+    const query = `select * from employee_master where id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.updateEmployeeData = async(data)=>{
+    const query = `update employee_master set emp_code='${data.eCode}',emp_name='${data.eName}',designation='${data.desig}',mobile_no='${data.mNo}',address='${data.address}',join_date='${data.joinDate}',salary='${data.eSal}' where id='${data.id}'`;
+    console.log(query);
+    const result = getPromise(query);
+    return result;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////Shift-master-code-////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+exports.insertShiftData = async(data)=>{
+    const query = `insert into shiftmaster(shift_name,s_time,e_time,nightShift,g_time,t_time,a_time)values('${data.sftName}','${data.sTime}','${data.eTime}','${data.shift}','${data.gTime}','${data.tTime}','${data.awTime}')`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.getShiftMaster = async()=>{
+    const query = `select * from shiftmaster`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.deleteShiftMaster = async(id)=>{
+    const query = `delete from shiftmaster where id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.editShiftMaster = async(id)=>{
+    const query = `select * from shiftmaster where id='${id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.updateShiftMaster = async(data)=>{
+    const query = `update shiftmaster set shift_name='${data.sftName}',s_time='${data.sTime}',e_time='${data.eTime}',nightShift='${data.shift}',g_time='${data.gTime}',t_time='${data.tTime}',a_time='${data.awTime}' where id='${data.id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+
+
+
 function getPromise(query) 
 {
 

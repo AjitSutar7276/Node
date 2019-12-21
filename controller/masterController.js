@@ -239,6 +239,76 @@ class masterController {
         const result = await masterDatabase.deleteRawData(req.params.id);
         res.send(result);
     }
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////Employee-Master-code///////////////////////////////
+    async insertEmployee(req,res)
+    {
+        const data = req.body;
+        const result = await masterDatabase.insertEmployee(data);
+        res.send(result);
+    }
+
+    async getEmployeeData(req,res)
+    {
+        const result = await masterDatabase.getEmployeeData();
+        res.send(result);
+    }
+
+    async deleteEmployee(req,res)
+    {
+        const result = await masterDatabase.deleteEmployee(req.params.id);
+        res.send(result);
+    }
+
+    async getEmployeeDataEdit(req,res)
+    {
+        const result = await masterDatabase.getEmployeeDataEdit(req.params.id);
+        res.send(result);
+    }
+
+    async updateEmployeeData(req,res)
+    {
+        const result = await masterDatabase.updateEmployeeData(req.body);
+        res.send(result);
+    }
+
+
+//////////////////////////////////////////Shift-Master////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+    async insertShiftData(req,res)
+    {
+        const result = await masterDatabase.insertShiftData(req.body);
+        res.send(result);
+    }
+    async getShiftMaster(req,res)
+    {
+        const result = await masterDatabase.getShiftMaster();
+        res.send(result);
+    }
+
+    async deleteShiftMaster(req,res)
+    {
+        const result = await masterDatabase.deleteShiftMaster(req.params.id);
+        res.send(result);
+    }
+
+    async editShiftMaster(req,res)
+    {
+        const result = await masterDatabase.editShiftMaster(req.params.id);
+        res.send(result);
+    }
+
+    async updateShiftMaster(req,res)
+    {
+        const result = await masterDatabase.updateShiftMaster(req.body);
+        res.send(result);
+    }
+
+
 }
 
 module.exports = masterController

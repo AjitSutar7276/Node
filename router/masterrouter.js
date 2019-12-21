@@ -54,5 +54,19 @@ router.post('/updateMachine',masterControllerObj.updateMachineData);
 router.get('/getRawMaterialData',masterControllerObj.getRawMaterailData);
 router.post('/submitRawData',masterControllerObj.submitRawMaterialData);
 router.get('/getCotegoryData',masterControllerObj.getCotegoryData);
-router.get('/deleteRaw/:id',masterControllerObj.deleteRawData)
+router.get('/deleteRaw/:id',masterControllerObj.deleteRawData);
+
+///////////////////////////Employee_Master////////////////////////////
+router.post('/insertEmployee',masterControllerObj.insertEmployee);
+router.get('/getEmployeeData',masterControllerObj.getEmployeeData);
+router.get('/deleteEmployee/:id',masterControllerObj.deleteEmployee);
+router.get('/getEmployeeDataEdit/:id',masterControllerObj.getEmployeeDataEdit);
+router.post('/updateEmployeeData',masterControllerObj.updateEmployeeData);
+
+///////////////////////////Shift-master/////////////////////////////////
+router.post('/insertShiftData',masterControllerObj.insertShiftData);
+router.get('/getShiftMaster',masterControllerObj.getShiftMaster);
+router.get('/deleteShiftMaster/:id',masterControllerObj.deleteShiftMaster);
+router.get('/editShiftMaster/:id',masterControllerObj.editShiftMaster);
+router.post('/updateShiftMaster',masterControllerObj.updateShiftMaster);
 module.exports = router;
