@@ -24,6 +24,34 @@ class productionController {
     let result = await productionDatabase.SubmitJodWorddata(data);
     res.send(result);
   }
+  
+  async getRawMaterialDataList(req,res)
+  {
+    let data = req.params.id;
+    let result = await productionDatabase.getRawMaterialDataList(data);
+    res.send(result);
+  }
+
+  async GetRawDetailsData(req,res)
+  {
+    let data = req.body;
+    let result = await productionDatabase.GetRawDetailsData(data);
+    res.send(result);
+  }
+
+  async getJobPendingData(req,res)
+  {
+    let data = req.body;
+    let result = await productionDatabase.getJobPendingData(data);
+    res.send(result);
+  }
+
+  async SubmitJobProducation(req,res)
+  {
+    let data = req.body;
+    let result = await productionDatabase.SubmitJobProducation(data);
+    res.send(result);
+  }
 }
 
 module.exports = productionController;

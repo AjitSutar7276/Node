@@ -26,6 +26,12 @@ exports.deletePartyData = async(id)=>{
     return result;
 }
 
+exports.updatePartyData = async(data)=>{
+    const query = `update party_master set party_type='${data.Customer}',party_name='${data.ptName}',address='${data.address}',phone='${data.phone}',mobile_1='${data.mob1}',mobile_2='${data.mob2}',fax='${data.fax}',gst='${data.gst}' where party_id='${data.id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
 /////////////////////////////////////////////////Quotation-Master-Database//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

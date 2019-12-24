@@ -35,13 +35,45 @@ exports.SubmitJodWorddata = async(data)=>{
         const result2 = getPromise(query2);
         // return result2
     })
-
- 
 }
 
+exports.getRawMaterialDataList = async(id)=>{
+    const query = `select RawDetails from job_master where id='${id}'`;
+    const result = getPromise(query);
+    console.log(result);
+    return result;
+}
+exports.GetRawDetailsData = async(data)=>{
+    const query = `SELECT * FROM raw_material_master WHERE material_id in (${data})`;
+    const result = getPromise(query);
+    return result;
+}
 
+exports.getJobPendingData = async(data)=>{
+    const query = `select * from po_id_master as po 
+    INNER JOIN job_process_details as jd on jd.po_id = po.po_id
+    INNER JOIN po_details as pd on pd.job_no = jd.job_id
+    INNER JOIN job_process_master as jp on jp.id = jd.process_id
+    INNER JOIN job_master as jm on jm.id = jd.po_id
+    WHERE '${data.date}' between po_date and delivery_date and jd.process_id = ${data.processid}`;
 
+    const result = getPromise(query);
+    return result;
+}
 
+exports.SubmitJobProducation = async(data)=>{
+    var prodId = 0;
+    const query = `insert into job_producation_details(start_time,lunch_time,end_time,date,Lunch,emp_id,process_id)values('${data.STime}','${data.Lunchtime}','${data.EndTime}','${data.Date}','${data.LunTime}','${data.Employeeid.id}','${data.process.id}')`;
+    const result = await getPromise(query);
+    prodId = result.insertId;
+    Object.keys(data.JobWorkDetails).forEach(ele=>{
+        const query = `insert into job_production_work_details(prod_id,po_id,job_no,allocated_hr,allocated_qty)values('${prodId}','${data.JobWorkDetails[ele].po_id}','${data.JobWorkDetails[ele].job_no}','${data.JobWorkDetails[ele].hours}','${data.JobWorkDetails[ele].qty}')`;
+        const result2 = getPromise(query);
+        return result2;
+    })
+ 
+
+}
 
 
 function getPromise(query) 

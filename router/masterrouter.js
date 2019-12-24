@@ -25,6 +25,7 @@ router.post('/SubmitJob',masterControllerObj.submitJobMasterData);
 router.get('/deleteJob/:id',masterControllerObj.deleteJob);
 router.get('/updateDatas/:id',masterControllerObj.updateDatas);
 router.post('/updateJobDatas',masterControllerObj.updateJobData);
+router.get('/getRawMaterialDataid/:id',masterControllerObj.getRawMaterialDataid);
 
 /////////////////////**Job_Process_Master**//////////////////
 router.post('/getJobProcessMaster',masterControllerObj.getJobProcessMaster);

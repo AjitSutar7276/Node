@@ -75,18 +75,27 @@ exports.getJobMasterData = async()=>{
 }
 
 exports.submitJOBData = async(data)=>{
-    console.log(data);
-    const query = `insert into job_master(art_no,job_name,hsn,description,open_stock,min_stock,max_stock,rate,cgst,sgst,igst)
-                    values('${data.ArtNo}','${data.JobName}','${data.HSN}','${data.description}','${data.openStock}','${data.MinStock}','${data.MaxStock}','${data.Rate}','${data.cgst}','${data.sgst}','${data.igst}')`;
-                
+    // console.log(data);
+    console.log(data.RawDetails.itmeName1);
+    var rawDetailsdata;
+    Object.keys(data.RawDetails).forEach(ele=>{
+        if(data.RawDetails[ele].itmeName1.material_id != undefined)
+        {
+            rawDetailsdata += data.RawDetails[ele].itmeName1.material_id +',';
+        }
+        console.log(data.RawDetails[ele].itmeName1.material_id);   
+    })
+    const query = `insert into job_master(art_no,job_name,RawDetails,hsn,description,open_stock,min_stock,max_stock,rate,cgst,sgst,igst)
+                    values('${data.ArtNo}','${data.JobName}','${rawDetailsdata}','${data.HSN}','${data.description}','${data.openStock}','${data.MinStock}','${data.MaxStock}','${data.Rate}','${data.cgst}','${data.sgst}','${data.igst}')`;
+    
     // console.log(query);
     const result = getPromise(query);
-    let jobID = result.insertId;
-    Object.keys(data.RawDetails).forEach(ele=>{
-        const query = `insert into raw_material_master(itme_name,job_id,item_type,unit,hsn,weight,feet,pur_rate,sale_rate,thinkness)values('${data.RawDetails[ele].itmeName1}','${jobID}','0','${data.RawDetails[ele].unit1}','${data.RawDetails[ele].HSN1}','${data.RawDetails[ele].weight1}','${data.RawDetails[ele].sqFeet1}','${data.RawDetails[ele].PurRate1}','${data.RawDetails[ele].SalesRate1}','${data.RawDetails[ele].Thickness1}')`;
-        const result1 = getPromise(query);
-        console.log(query)
-    });
+    // let jobID = result.insertId;
+    // Object.keys(data.RawDetails).forEach(ele=>{
+    //     const query = `insert into raw_material_master(itme_name,job_id,item_type,unit,hsn,weight,feet,pur_rate,sale_rate,thinkness)values('${data.RawDetails[ele].itmeName1}','${jobID}','0','${data.RawDetails[ele].unit1}','${data.RawDetails[ele].HSN1}','${data.RawDetails[ele].weight1}','${data.RawDetails[ele].sqFeet1}','${data.RawDetails[ele].PurRate1}','${data.RawDetails[ele].SalesRate1}','${data.RawDetails[ele].Thickness1}')`;
+    //     const result1 = getPromise(query);
+    //     console.log(query)
+    // });
     // if(data.Checked == true)
     // {
     //     const query =`insert into raw_material_master(itme_name,item_type,unit,hsn,used_in,category,weight,feet,pur_rate,sale_rate,op_stock,thinkness,minLevel,maxLevel,cgst,sgst,igst,imgPath)values('${data.itemName}','${data.itmeType.id}','${data.unit}','${data.HSN}','${data.Used_in}','${data.category.id}','${data.weight}','${data.feet}','${data.pur_rate}','${data.sale_rate}','${data.thinkness}')`;
@@ -108,6 +117,12 @@ exports.updateJobData = async(id)=>{
 
 exports.updateJobDetails = async(data)=>{
     const query = `update job_master set art_no='${data.ArtNo}',job_name='${data.JobName}',hsn='${data.HSN}',description='${data.description}',open_stock='${data.openStock}',min_stock='${data.MinStock}',max_stock='${data.MaxStock}',rate='${data.Rate}',cgst='${data.cgst}',sgst='${data.sgst}',igst='${data.igst}' where id='${data.id}'`;
+    const result = getPromise(query);
+    return result;
+}
+
+exports.getRawMaterialDataid = async(id)=>{
+    const query = `select * from raw_material_master where material_id='${id}'`;
     const result = getPromise(query);
     return result;
 }

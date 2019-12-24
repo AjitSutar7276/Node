@@ -8,6 +8,7 @@ router.post('/submitPartyData',salesControllerObj.submitPartyData);
 router.get('/getPartyData',salesControllerObj.getPartyData);
 router.get('/editPartyData/:id',salesControllerObj.editPartyData);
 router.get('/deletePartyData/:id',salesControllerObj.deletePartyData);
+router.post('/updatePartyData',salesControllerObj.updatePartyData);
 
 //////////////////////////////////Quotation_Master_Rounting////////////////////////////
 

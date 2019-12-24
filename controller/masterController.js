@@ -109,6 +109,12 @@ class masterController {
         res.send(updatedata);
     }
 
+    async getRawMaterialDataid(req,res)
+    {
+        const data = req.params.id;
+        const getData = await masterDatabase.getRawMaterialDataid(data);
+        res.send(getData);
+    }
     /////////////////////////////////////////////////////////////////////////////
     ///////////////////////////Job_Process_Master///////////////////////////////
     ////////////////////////////////////////////////////////////////////////////

@@ -28,6 +28,11 @@ class salesController {
         res.send(result);
     }
 
+    async updatePartyData(req,res)
+    {
+        let result = await salesDatabase.updatePartyData(req.body);
+        res.send(result);
+    }
 
     ////////////////////////////////Quotation-Master-Controller///////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////
