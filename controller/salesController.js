@@ -92,6 +92,12 @@ class salesController {
         let result = await salesDatabase.submitDataOrder(data);
         res.send(result);
     }
+
+    async getPODetailsData(req,res)
+    {
+        let result = await salesDatabase.getPODetailsData();
+        res.send(result);
+    }
 }
 
 module.exports = salesController;

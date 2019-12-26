@@ -123,6 +123,11 @@ exports.submitDataOrder = async(data)=>{
     });
 }
 
+exports.getPODetailsData = async()=>{
+    const query = `SELECT * FROM po_id_master as p INNER JOIN party_master as pd on pd.party_id = p.party_id`;
+    const result = await getPromise(query);
+    return result;s
+}
 
 
 

@@ -24,4 +24,5 @@ router.get('/getQuoDataForPO/:id',salesControllerObj.getQuoDataForPO);
 router.get('/getPOQuoData/:id',salesControllerObj.getPOQuoData);
 router.get('/getJobDataForPoData/:id',salesControllerObj.getJobDataForPoData);
 router.post('/submitDataOrder',salesControllerObj.submitDataOrder);
+router.get('/getPODetailsData',salesControllerObj.getPODetailsData);
 module.exports = router;
