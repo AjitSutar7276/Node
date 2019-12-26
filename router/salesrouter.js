@@ -15,7 +15,7 @@ router.post('/updatePartyData',salesControllerObj.updatePartyData);
 router.get('/getQuotationData',salesControllerObj.getQuotationData);
 router.get('/getMaterailData',salesControllerObj.getMaterailData);
 router.post('/submitQutationData',salesControllerObj.submitQutationData);
-
+router.get('/getQuotationDetailsData',salesControllerObj.getQuotationDetailsData);
 
 ////////////////////////////////Order-Book-Master//////////////////////////////////////
 

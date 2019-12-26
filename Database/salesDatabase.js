@@ -74,6 +74,12 @@ exports.submitQutationData = async(data) =>{
 }
 
 
+exports.getQuotationDetailsData = async() =>{
+    const query= `SELECT * FROM qutation_id_master as q INNER JOIN party_master as p on p.party_id = q.Party_id`;
+    const result = getPromise(query);
+    return result;
+}
+
 //////////////////////////////////////////Order-Book-Master//////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.getPoIdDetails = async() =>{

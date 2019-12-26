@@ -53,6 +53,11 @@ class salesController {
         res.send(result);
     }
 
+    async getQuotationDetailsData(req,res)
+    {
+        let result = await salesDatabase.getQuotationDetailsData();
+        res.send(result);
+    }
 
     //////////////////////////////////Order-Book_Master//////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////
