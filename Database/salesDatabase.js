@@ -74,12 +74,17 @@ exports.submitQutationData = async(data) =>{
 }
 
 
-exports.getQuotationDetailsData = async() =>{
+exports.getQuotationDetailsDatas = async() =>{
     const query= `SELECT * FROM qutation_id_master as q INNER JOIN party_master as p on p.party_id = q.Party_id`;
     const result = getPromise(query);
     return result;
 }
 
+exports.getQuotationDetailsData = async(id) =>{
+    const query =`SELECT *,u.unit as unitname FROM qutation_id_master as qi INNER JOIN qutation_details as qa on qa.qutation_id = qi.qutation_id INNER join party_master as p on p.party_id = qi.Party_id INNER JOIN unit_master as u on u.id = qa.unit where qi.qutation_id = '${id}'`;
+    const result = getPromise(query);
+    return result;
+}
 //////////////////////////////////////////Order-Book-Master//////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.getPoIdDetails = async() =>{
