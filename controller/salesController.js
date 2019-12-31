@@ -103,6 +103,12 @@ class salesController {
         let result = await salesDatabase.getPODetailsData();
         res.send(result);
     }
+
+    async getPODetailsDataids(req,res)
+    {
+        let result = await salesDatabase.getPODetailsDataids(req.params.id);
+        res.send(result);
+    }
 }
 
 module.exports = salesController;

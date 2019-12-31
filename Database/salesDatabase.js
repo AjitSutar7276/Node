@@ -134,6 +134,11 @@ exports.getPODetailsData = async()=>{
     return result;s
 }
 
+exports.getPODetailsDataids = async(id)=>{
+    const query = `SELECT * from po_id_master as po INNER JOIN po_details as p on p.po_no = po.po_id INNER JOIN job_master as j on j.id = p.job_no INNER JOIN party_master as pm on pm.party_id = po.party_id INNER JOIN qutation_id_master as qm on qm.qutation_id = po.qutation_id WHERE po.po_id = ${id}`;
+    const result = await getPromise(query);
+    return result;
+}
 
 
 
